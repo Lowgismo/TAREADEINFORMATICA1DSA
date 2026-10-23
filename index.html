@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ética y Normativa Tech | Blog Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <style>
+        :root {
+            --primary-color: #0284c7;
+            --primary-hover: #0369a1;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --radius: 8px;
+            --max-width: 1100px;
+            --font: 'Inter', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Barra superior */
+        .blog-admin-bar {
+            background: #1e293b;
+            color: #cbd5e1;
+            font-size: 13px;
+            padding: 6px 0;
+        }
+
+        .navbar-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-links a {
+            color: #cbd5e1;
+            margin-left: 15px;
+        }
+
+        .admin-links a:hover {
+            color: #fff;
+        }
+
+        /* Cabecera */
+        .site-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-blog-title h1 a {
+            font-size: 1.6rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .header-blog-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .header-search {
+            display: flex;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .header-search input {
+            border: none;
+            padding: 8px 12px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .header-search button {
+            background: #f8fafc;
+            border: none;
+            border-left: 1px solid var(--border-color);
+            padding: 0 12px;
+            cursor: pointer;
+        }
+
+        /* Menú de navegación */
+        .blog-nav {
+            background: #334155;
+            margin-bottom: 30px;
+        }
+
+        .blog-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            padding: 12px 0;
+            overflow-x: auto;
+        }
+
+        .blog-nav a {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .blog-nav a.active,
+        .blog-nav a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Layout Principal */
+        .layout-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .main-content {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .post-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .post-title {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .post-body p {
+            margin-bottom: 18px;
+        }
+
+        .post-body .lead {
+            font-size: 1.05rem;
+            color: #475569;
+        }
+
+        .post-body h3 {
+            font-size: 1.25rem;
+            color: #1e293b;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .pull-quote {
+            border-left: 4px solid var(--primary-color);
+            background: #f8fafc;
+            padding: 15px 20px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #475569;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .pull-quote cite {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            font-style: normal;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .custom-list {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .custom-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Interacción */
+        .interaction-bar {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn-action {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-main);
+            transition: background 0.2s;
+        }
+
+        .btn-action:hover {
+            background: #e2e8f0;
+        }
+
+        /* Fuentes consultadas */
+        .sources-box {
+            margin-top: 30px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: var(--radius);
+        }
+
+        .sources-box h4 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+
+        .sources-box ul {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding-left: 20px;
+        }
+
+        /* Comentarios */
+        .comments-section {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .comments-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .comment-header {
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .comment-date {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .add-comment-box {
+            margin-top: 25px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid #e2e8f0;
+        }
+
+        .add-comment-box h4 {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-family: var(--font);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Sidebar */
+        .widget {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .widget-title {
+            font-size: 0.95rem;
+            color: #1e293b;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .widget-content p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .widget-list {
+            list-style: none;
+        }
+
+        .widget-list li {
+            padding: 6px 0;
+            border-bottom: 1px dotted #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .widget-list li:last-child {
+            border-bottom: none;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .btn-submit-small {
+            width: 100%;
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 6px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-submit-small:hover {
+            background: #1e293b;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 25px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1e293b;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            font-size: 13px;
+            z-index: 2000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- BARRA SUPERIOR (LISTO PARA SESIONES PHP) -->
+    <div class="blog-admin-bar">
+        <div class="container navbar-flex">
+            <span class="admin-welcome">Panel de Colaboradores</span>
+            <div class="admin-links">
+                <a href="admin/login.php">Iniciar Sesión</a>
+                <a href="admin/nuevo_post.php">Nuevo Post</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CABECERA DEL BLOG -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="header-blog-title">
+                <h1><a href="index.php">Ética y Normativa Tech</a></h1>
+                <p>Principios fundamentales y marcos normativos en la ingeniería de software</p>
+            </div>
+            <form class="header-search" id="headerSearchForm" action="buscar.php" method="GET">
+                <input type="text" name="q" id="headerSearchInput" placeholder="Buscar artículos..." required>
+                <button type="submit" title="Buscar">🔍</button>
+            </form>
+        </div>
+    </header>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="blog-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.php" class="active">Inicio</a></li>
+                <li><a href="https://www.acm.org/code-of-ethics" target="_blank" rel="noopener">Ética Profesional
+                        (ACM)</a></li>
+                <li><a href="https://gdpr.eu/" target="_blank" rel="noopener">Normativa RGPD</a></li>
+                <li><a href="https://artificialintelligenceact.eu/" target="_blank" rel="noopener">AI Act UE</a></li>
+                <li><a href="contacto.php">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL (DOS COLUMNAS) -->
+    <div class="container layout-wrapper">
+
+        <!-- COLUMNA CENTRAL (POST PRINCIPAL) -->
+        <main class="main-content">
+            <article class="blog-post">
+
+                <div class="post-category">Categoría: Ingeniería y Ética de Software</div>
+                <h2 class="post-title">Principios Éticos Fundamentales y la Normativa que debe Caracterizar a los
+                    Desarrolladores</h2>
+
+                <div class="post-meta">
+                    <span>Por Equipo de Desarrollo</span> •
+                    <time datetime="2026-10-17">17 de Octubre, 2026</time> •
+                    <span>💬 <a href="#comments"><span id="commentCountBadge">2</span> Comentarios</a></span>
+                </div>
+
+                <div class="post-body">
+                    <p class="lead">
+                        <strong>El software ha dejado de ser una herramienta neutra</strong> para convertirse en
+                        infraestructura social crucial. Media en el acceso a la salud, la concesión de créditos y la
+                        administración de justicia, exigiendo un marco de responsabilidad riguroso[cite: 1].
+                    </p>
+
+                    <h3>1. Principios Éticos Fundamentales</h3>
+                    <p>
+                        El <a href="https://www.acm.org/code-of-ethics" target="_blank" rel="noopener">Código ACM de
+                            Ética y Conducta Profesional</a> establece el sustrato ético de la profesión: contribuir al
+                        bienestar humano, evitar el daño, ser honesto y actuar sin discriminación[cite: 1]. Asimismo, la
+                        <strong>privacidad desde el diseño y por defecto</strong> (consagrada en el <a
+                            href="https://gdpr-text.com/es/articulo/25/" target="_blank" rel="noopener">artículo 25 del
+                            RGPD</a>) obliga a integrar la protección de datos directamente en la arquitectura del
+                        sistema, no como un añadido posterior[cite: 1].
+                    </p>
+
+                    <blockquote class="pull-quote">
+                        "Las acciones de los profesionales de la computación cambian el mundo y deben apoyar de manera
+                        consistente el bien público."
+                        <cite>— <a href="https://www.acm.org/code-of-ethics" target="_blank" rel="noopener">ACM Code of
+                                Ethics and Professional Conduct</a>[cite: 1]</cite>
+                    </blockquote>
+
+                    <h3>2. Marcos Normativos Clave</h3>
+                    <ul class="custom-list">
+                        <li><strong>RGPD y CCPA/CPRA:</strong> Regulan los derechos de los usuarios sobre sus datos a
+                            través de normativas como el <a href="https://gdpr.eu/" target="_blank"
+                                rel="noopener">Reglamento General de Protección de Datos</a> y la <a
+                                href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener">California
+                                Consumer Privacy Act</a>[cite: 1].</li>
+                        <li><strong>Reglamento de Inteligencia Artificial (AI Act):</strong> La legislación oficial de
+                            la Unión Europea (<a href="https://artificialintelligenceact.eu/" target="_blank"
+                                rel="noopener">AI Act Europe</a>) clasifica los sistemas por nivel de riesgo y prohíbe
+                            prácticas inaceptables como la manipulación subliminal y el puntaje social (*social
+                            scoring*)[cite: 1].</li>
+                        <li><strong>Lealtad algorítmica:</strong> Previene el sesgo sistémico (visto en investigaciones
+                            públicas como el análisis de <a
+                                href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing"
+                                target="_blank" rel="noopener">ProPublica sobre el algoritmo COMPAS</a>)[cite: 1].</li>
+                    </ul>
+
+                    <h3>Conclusión</h3>
+                    <p>
+                        La calidad técnica de un sistema no puede separarse de su calidad moral. Asumir la
+                        responsabilidad ética protege los derechos fundamentales de los usuarios y asegura una
+                        tecnología justa para toda la sociedad[cite: 1].
+                    </p>
+
+                    <!-- SECCIÓN DE INTERACCIÓN -->
+                    <div class="interaction-bar">
+                        <button class="btn-action" id="likeBtn">
+                            ❤️ <span id="likeText">Me gusta</span> (<span id="likeCount">14</span>)
+                        </button>
+                        <button class="btn-action" id="shareBtn">
+                            🔗 Compartir enlace
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FUENTES OFICIALES CON ENLACES REALES -->
+                <div class="sources-box">
+                    <h4>Fuentes y Referencias Oficiales:</h4>
+                    <ul>
+                        <li>Association for Computing Machinery (ACM). (2018). <a
+                                href="https://www.acm.org/code-of-ethics" target="_blank" rel="noopener"><i>ACM Code of
+                                    Ethics and Professional Conduct</i></a>[cite: 1].</li>
+                        <li>Unión Europea. (2016). <a
+                                href="https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX%3A32016R0679"
+                                target="_blank" rel="noopener"><i>Reglamento (UE) 2016/679 (RGPD) - Artículo
+                                    25</i></a>[cite: 1].</li>
+                        <li>Unión Europea. (2024). <a href="https://artificialintelligenceact.eu/" target="_blank"
+                                rel="noopener"><i>Reglamento de Inteligencia Artificial (AI Act)</i></a>[cite: 1].</li>
+                        <li>ProPublica. (2016). <a
+                                href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing"
+                                target="_blank" rel="noopener"><i>Machine Bias: Risk Assessments in Criminal Sentencing
+                                    (COMPAS)</i></a>[cite: 1].</li>
+                    </ul>
+                </div>
+
+                <!-- SECCIÓN DE COMENTARIOS -->
+                <section class="comments-section" id="comments">
+                    <h3>Comentarios (<span id="commentsCountText">2</span>)</h3>
+
+                    <div class="comments-list" id="commentsList">
+                        <div class="comment-item">
+                            <div class="comment-avatar">👨‍💻</div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <strong>Carlos Mendoza</strong>
+                                    <span class="comment-date">Hace 2 horas</span>
+                                </div>
+                                <p>Excelente artículo. Es vital conocer las normativas como el RGPD y el AI Act antes de
+                                    desplegar software corporativo[cite: 1].</p>
+                            </div>
+                        </div>
+                        <div class="comment-item">
+                            <div class="comment-avatar">👩‍💻</div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <strong>Lucía Fernández</strong>
+                                    <span class="comment-date">Ayer</span>
+                                </div>
+                                <p>Muy completo. Los casos de sesgo algorítmico demuestran que la ética debe
+                                    considerarse desde el inicio del diseño[cite: 1].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de comentarios (Preparado para PHP) -->
+                    <div class="add-comment-box">
+                        <h4>Deja tu comentario</h4>
+                        <form id="commentForm" action="procesar_comentario.php" method="POST">
+                            <div class="form-group">
+                                <input type="text" id="commentName" name="nombre" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="commentEmail" name="email" placeholder="Tu correo electrónico"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="commentMessage" name="mensaje" rows="3"
+                                    placeholder="Escribe tu opinión..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Publicar comentario</button>
+                        </form>
+                    </div>
+                </section>
+
+            </article>
+        </main>
+
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+
+            <div class="widget">
+                <h3 class="widget-title">Sobre el Proyecto</h3>
+                <div class="widget-content">
+                    <p>Espacio académico e informativo dedicado a recopilar normativas, estándares de desarrollo y
+                        buenas prácticas de ingeniería de software[cite: 1].</p>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">Enlaces de Interés</h3>
+                <ul class="widget-list">
+                    <li><a href="https://www.acm.org/" target="_blank" rel="noopener">Portal Oficial ACM</a></li>
+                    <li><a href="https://gdpr.eu/" target="_blank" rel="noopener">Guía Oficial RGPD</a></li>
+                    <li><a href="https://www.ieee.org/" target="_blank" rel="noopener">IEEE Standards</a></li>
+                    <li><a href="https://www.oecd.org/en/topics/artificial-intelligence.html" target="_blank"
+                            rel="noopener">IA de la OCDE</a></li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">Boletín Informativo</h3>
+                <form action="suscribir.php" method="POST" class="newsletter-form">
+                    <input type="email" name="email_newsletter" placeholder="Tu correo..." required>
+                    <button type="submit" class="btn-submit-small">Suscribirme</button>
+                </form>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Ética y Normativa Tech. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="aviso_legal.php">Aviso Legal</a> |
+                <a href="privacidad.php">Política de Privacidad</a> |
+                <a href="contacto.php">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notificaciones flotantes -->
+    <div id="toastNotification" class="toast hidden"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const commentForm = document.getElementById("commentForm");
+            const commentsList = document.getElementById("commentsList");
+            const commentCountBadge = document.getElementById("commentsCountText");
+            const commentCountBadgeHeader = document.getElementById("commentCountBadge");
+
+            let totalComments = 2;
+
+            if (commentForm && commentsList) {
+                commentForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    const nameInput = document.getElementById("commentName");
+                    const messageInput = document.getElementById("commentMessage");
+                    const name = nameInput.value.trim();
+                    const message = messageInput.value.trim();
+
+                    if (!name || !message) return;
+
+                    const newComment = document.createElement("div");
+                    newComment.className = "comment-item";
+                    newComment.innerHTML = `
+                <div class="comment-avatar">💬</div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <strong>${escapeHTML(name)}</strong>
+                        <span class="comment-date">Hace un momento</span>
+                    </div>
+                    <p>${escapeHTML(message)}</p>
+                </div>
+            `;
+
+                    commentsList.appendChild(newComment);
+                    totalComments++;
+                    if (commentCountBadge) commentCountBadge.textContent = totalComments;
+                    if (commentCountBadgeHeader) commentCountBadgeHeader.textContent = totalComments;
+
+                    commentForm.reset();
+                    showToast("¡Comentario publicado con éxito!");
+                });
+            }
+
+            const likeBtn = document.getElementById("likeBtn");
+            const likeCount = document.getElementById("likeCount");
+            const likeText = document.getElementById("likeText");
+            let liked = false;
+
+            if (likeBtn && likeCount) {
+                likeBtn.addEventListener("click", () => {
+                    let currentLikes = parseInt(likeCount.textContent, 10) || 0;
+
+                    if (!liked) {
+                        currentLikes++;
+                        liked = true;
+                        likeBtn.style.borderColor = "var(--primary-color)";
+                        likeBtn.style.color = "var(--primary-color)";
+                        likeText.textContent = "Te gusta";
+                        showToast("¡Gracias por tu reacción! ❤️");
+                    } else {
+                        currentLikes--;
+                        liked = false;
+                        likeBtn.style.borderColor = "var(--border-color)";
+                        likeBtn.style.color = "var(--text-main)";
+                        likeText.textContent = "Me gusta";
+                    }
+                    likeCount.textContent = currentLikes;
+                });
+            }
+
+            const shareBtn = document.getElementById("shareBtn");
+            if (shareBtn) {
+                shareBtn.addEventListener("click", () => {
+                    navigator.clipboard.writeText(window.location.href)
+                        .then(() => {
+                            showToast("¡Enlace copiado al portapapeles! 📋");
+                        })
+                        .catch(() => {
+                            showToast("No se pudo copiar el enlace.");
+                        });
+                });
+            }
+
+            let toastTimeout;
+            function showToast(message) {
+                let toast = document.getElementById("toastNotification");
+                if (!toast) return;
+
+                toast.textContent = message;
+                toast.classList.remove("hidden");
+
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add("hidden");
+                }, 3000);
+            }
+
+            function escapeHTML(str) {
+                return str.replace(/[&<>'"]/g,
+                    tag => ({
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        "'": '&#39;',
+                        '"': '&quot;'
+                    }[tag] || tag)
+                );
+            }
+        });
+    </script>
+</body>
+
+</html>
